@@ -23,6 +23,7 @@ namespace S2J
             {
                 Console.Write("请输入Schematic文件: ");
                 file = Console.ReadLine();
+                Console.WriteLine(file);
                 Console.WriteLine();
             }
 
@@ -341,51 +342,88 @@ namespace S2J
                 all_block.Add("252_14", "blocks/concrete_powder_red");
                 all_block.Add("252_15", "blocks/concrete_powder_black");
                 all_block.Add("255_0", "blocks/structure_block");
-                //define all_block
-                Dictionary<string, string> slabs = new Dictionary<string, string>();
-                slabs.Add("44_0", "blocks/stone_slab_top");
-                slabs.Add("44_1", "blocks/sandstone_top");
-                slabs.Add("44_3", "blocks/cobblestone");
-                slabs.Add("44_4", "blocks/brick");
-                slabs.Add("44_5", "blocks/stonebrick");
-                slabs.Add("44_6", "blocks/nether_brick");
-                slabs.Add("44_7", "blocks/quartz_block_top");
-                slabs.Add("126_0", "blocks/planks_oak");
-                slabs.Add("126_1", "blocks/planks_spruce");
-                slabs.Add("126_2", "blocks/planks_birch");
-                slabs.Add("126_3", "blocks/planks_jungle");
-                slabs.Add("126_4", "blocks/planks_acacia");
-                slabs.Add("126_5", "blocks/planks_big_oak");
-                slabs.Add("182_0", "blocks/red_sandstone_top");
-                slabs.Add("205_0", "blocks/purpur_block");
-                //define slab bottom
-                Dictionary<string, string> slabt = new Dictionary<string, string>();
-                slabt.Add("44_8", "blocks/stone_slab_top");
-                slabt.Add("44_9", "blocks/sandstone_top");
-                slabt.Add("44_10", "blocks/planks_oak");
-                slabt.Add("44_11", "blocks/cobblestone");
-                slabt.Add("44_12", "blocks/brick");
-                slabt.Add("44_13", "blocks/stonebrick");
-                slabt.Add("44_14", "blocks/nether_brick");
-                slabt.Add("44_15", "blocks/quartz_block_top");
-                slabt.Add("126_8", "blocks/planks_oak");
-                slabt.Add("126_9", "blocks/planks_spruce");
-                slabt.Add("126_10", "blocks/planks_birch");
-                slabt.Add("126_11", "blocks/planks_jungle");
-                slabt.Add("126_12", "blocks/planks_acacia");
-                slabt.Add("126_13", "blocks/planks_big_oak");
-                slabt.Add("182_8", "blocks/red_sandstone_top");
-                slabt.Add("205_8", "blocks/purpur_block");
+                    //water
+                all_block.Add("8_0", "blocks/water_flow");
+                all_block.Add("8_5", "blocks/water_flow");
+                all_block.Add("8_6", "blocks/water_flow");
+                all_block.Add("8_7", "blocks/water_flow");
+                all_block.Add("9_0", "blocks/water_still");
+                all_block.Add("9_5", "blocks/water_still");
+                all_block.Add("9_6", "blocks/water_still");
+                all_block.Add("9_7", "blocks/water_still");
+                    //lava
+                all_block.Add("10_0", "blocks/lava_flow");
+                all_block.Add("10_5", "blocks/lava_flow");
+                all_block.Add("10_6", "blocks/lava_flow");
+                all_block.Add("10_7", "blocks/lava_flow");
+                all_block.Add("11_0", "blocks/lava_still");
+                all_block.Add("11_5", "blocks/lava_still");
+                all_block.Add("11_6", "blocks/lava_still");
+                all_block.Add("11_7", "blocks/lava_still");
+
+                //define slab
+                Dictionary<string, string> slab = new Dictionary<string, string>();
+                slab.Add("44_0", "blocks/stone_slab_top");
+                slab.Add("44_1", "blocks/sandstone_top");
+                slab.Add("44_3", "blocks/cobblestone");
+                slab.Add("44_4", "blocks/brick");
+                slab.Add("44_5", "blocks/stonebrick");
+                slab.Add("44_6", "blocks/nether_brick");
+                slab.Add("44_7", "blocks/quartz_block_top");
+                slab.Add("126_0", "blocks/planks_oak");
+                slab.Add("126_1", "blocks/planks_spruce");
+                slab.Add("126_2", "blocks/planks_birch");
+                slab.Add("126_3", "blocks/planks_jungle");
+                slab.Add("126_4", "blocks/planks_acacia");
+                slab.Add("126_5", "blocks/planks_big_oak");
+                slab.Add("182_0", "blocks/red_sandstone_top");
+                slab.Add("205_0", "blocks/purpur_block");
+                    //water
+                slab.Add("8_1", "blocks/water_flow");
+                slab.Add("8_2", "blocks/water_flow");
+                slab.Add("8_3", "blocks/water_flow");
+                slab.Add("8_4", "blocks/water_flow");
+                slab.Add("9_1", "blocks/water_still");
+                slab.Add("9_2", "blocks/water_still");
+                slab.Add("9_3", "blocks/water_still");
+                slab.Add("9_4", "blocks/water_still");
+                    //lava
+                slab.Add("10_1", "blocks/lava_flow");
+                slab.Add("10_2", "blocks/lava_flow");
+                slab.Add("10_3", "blocks/lava_flow");
+                slab.Add("10_4", "blocks/lava_flow");
+                slab.Add("11_1", "blocks/lava_still");
+                slab.Add("11_2", "blocks/lava_still");
+                slab.Add("11_3", "blocks/lava_still");
+                slab.Add("11_4", "blocks/lava_still");
+                Dictionary<string, string> slab_top = new Dictionary<string, string>();
+                slab_top.Add("44_8", "blocks/stone_slab_top");
+                slab_top.Add("44_9", "blocks/sandstone_top");
+                slab_top.Add("44_10", "blocks/planks_oak");
+                slab_top.Add("44_11", "blocks/cobblestone");
+                slab_top.Add("44_12", "blocks/brick");
+                slab_top.Add("44_13", "blocks/stonebrick");
+                slab_top.Add("44_14", "blocks/nether_brick");
+                slab_top.Add("44_15", "blocks/quartz_block_top");
+                slab_top.Add("126_8", "blocks/planks_oak");
+                slab_top.Add("126_9", "blocks/planks_spruce");
+                slab_top.Add("126_10", "blocks/planks_birch");
+                slab_top.Add("126_11", "blocks/planks_jungle");
+                slab_top.Add("126_12", "blocks/planks_acacia");
+                slab_top.Add("126_13", "blocks/planks_big_oak");
+                slab_top.Add("182_8", "blocks/red_sandstone_top");
+                slab_top.Add("205_8", "blocks/purpur_block");
+
                 //define slab upper
                 foreach (var item in all_block)
                 {
                     model.textures.Add(item.Key, item.Value);
                 }
-                foreach (var item in slabs)
+                foreach (var item in slab)
                 {
                     model.textures.Add(item.Key, item.Value);
                 }
-                foreach (var item in slabt)
+                foreach (var item in slab_top)
                 {
                     model.textures.Add(item.Key, item.Value);
                 }
@@ -406,7 +444,7 @@ namespace S2J
                             var block = blocks[index];
                             var data = blockdata[index];
                             string texture = "";
-                            var slab = false;
+                            var islab = false;
                             var top = false;
                             //*define
 
@@ -414,19 +452,19 @@ namespace S2J
                             if (all_block.ContainsKey(m))
                             {
                                 texture = m;
-                                slab = false;
+                                islab = false;
 
                             }//allblock
-                            else if (slabs.ContainsKey(m))
+                            else if (slab.ContainsKey(m))
                             {
                                 texture = m;
-                                slab = true;
+                                islab = true;
                                 top = false;
                             }//slab_bottom
-                            else if (slabt.ContainsKey(m))
+                            else if (slab_top.ContainsKey(m))
                             {
                                 texture = m;
-                                slab = true;
+                                islab = true;
                                 top = true;
                             }//slab_upper
                             else
@@ -442,8 +480,8 @@ namespace S2J
                             //write face
                             elements.Add(new Model.Element
                             {
-                                from = new[] { x, y + (slab && top ? 0.5f : 0), z },
-                                to = new[] { x + 1, y + (slab && !top ? 0.5f : 1), z + 1 },
+                                from = new[] { x, y + (islab && top ? 0.5f : 0), z },
+                                to = new[] { x + 1, y + (islab && !top ? 0.5f : 1), z + 1 },
                                 faces = new Dictionary<string, Model.Element.Face>
                                 {
                                     {"North", face},
