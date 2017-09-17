@@ -86,9 +86,25 @@ namespace S2J
                 all_block.Add("17_1", "blocks/log_spruce");
                 all_block.Add("17_2", "blocks/log_birch");
                 all_block.Add("17_3", "blocks/log_jungle");
+                all_block.Add("18_0", "colormap/foliage");
+                all_block.Add("18_1", "colormap/foliage");
+                all_block.Add("18_2", "colormap/foliage");
+                all_block.Add("18_3", "colormap/foliage");
+                all_block.Add("18_4", "colormap/foliage");
+                all_block.Add("18_5", "colormap/foliage");
+                all_block.Add("18_6", "colormap/foliage");
+                all_block.Add("18_7", "colormap/foliage");
+                all_block.Add("18_8", "colormap/foliage");
+                all_block.Add("18_9", "colormap/foliage");
+                all_block.Add("18_10", "colormap/foliage");
+                all_block.Add("18_11", "colormap/foliage");
+                all_block.Add("18_12", "colormap/foliage");
+                all_block.Add("18_13", "colormap/foliage");
+                all_block.Add("18_14", "colormap/foliage");
+                all_block.Add("18_15", "colormap/foliage");
                 all_block.Add("19_0", "blocks/sponge");
                 all_block.Add("19_1", "blocks/sponge_wet");
-                all_block.Add("20_0", "blocks/glass");
+                //all_block.Add("20_0", "transparent");
                 all_block.Add("21_0", "blocks/lapis_ore");
                 all_block.Add("22_0", "blocks/lapis_block");
                 all_block.Add("23_0", "blocks/furnace_top");
@@ -137,13 +153,13 @@ namespace S2J
                 all_block.Add("47_0", "blocks/bookshelf");
                 all_block.Add("48_0", "blocks/cobblestone_mossy");
                 all_block.Add("49_0", "blocks/obsidian");
-                all_block.Add("53_0", "blocks/planks_oak");
+                all_block.Add("53_x", "blocks/planks_oak");
                 all_block.Add("56_0", "blocks/diamond_ore");
                 all_block.Add("57_0", "blocks/diamond_block");
                 all_block.Add("58_0", "blocks/crafting_table_top");
-                all_block.Add("60_0", "blocks/farmland_dry");
+                all_block.Add("60_x", "blocks/farmland_dry");
                 all_block.Add("61_0", "blocks/furnace_top");
-                all_block.Add("67_0", "blocks/cobblestone");
+                all_block.Add("67_x", "blocks/cobblestone");
                 all_block.Add("73_0", "blocks/redstone_ore");
                 all_block.Add("78_0", "blocks/snow");
                 all_block.Add("79_0", "blocks/ice");
@@ -184,24 +200,24 @@ namespace S2J
                 all_block.Add("98_3", "blocks/stonebrick_carved");
                 all_block.Add("99_0", "blocks/mushroom_block_skin_brown");
                 all_block.Add("100_0", "blocks/mushroom_block_skin_red");
-                all_block.Add("102_0", "blocks/glass");
+                //all_block.Add("102_0", "transparent");
                 all_block.Add("103_0", "blocks/melon_side");
-                all_block.Add("108_0", "blocks/brick");
-                all_block.Add("109_0", "blocks/stonebrick");
+                all_block.Add("108_x", "blocks/brick");
+                all_block.Add("109_x", "blocks/stonebrick");
                 all_block.Add("110_0", "blocks/mycelium_top");
                 all_block.Add("112_0", "blocks/nether_brick");
-                all_block.Add("114_0", "blocks/nether_brick");
+                all_block.Add("114_x", "blocks/nether_brick");
                 all_block.Add("120_0", "blocks/endframe_top");
                 all_block.Add("121_0", "blocks/end_stone");
                 all_block.Add("122_0", "blocks/dragon_egg");
                 all_block.Add("123_0", "blocks/redstone_lamp_on");
                 all_block.Add("124_0", "blocks/redstone_lamp_off");
-                all_block.Add("128_0", "blocks/sandstone_normal");
+                all_block.Add("128_x", "blocks/sandstone_normal");
                 all_block.Add("129_0", "blocks/emerald_ore");
                 all_block.Add("133_0", "blocks/emerald_block");
-                all_block.Add("134_0", "blocks/planks_spruce");
-                all_block.Add("135_0", "blocks/planks_birch");
-                all_block.Add("136_0", "blocks/planks_jungle");
+                all_block.Add("134_x", "blocks/planks_spruce");
+                all_block.Add("135_x", "blocks/planks_birch");
+                all_block.Add("136_x", "blocks/planks_jungle");
                 all_block.Add("137_0", "blocks/command_block_front");
                 all_block.Add("138_0", "blocks/beacon");
                 all_block.Add("139_0", "blocks/cobblestone");
@@ -215,7 +231,7 @@ namespace S2J
                 all_block.Add("155_0", "blocks/quartz_block_side");
                 all_block.Add("155_1", "blocks/quartz_block_chiseled");
                 all_block.Add("155_2", "blocks/quartz_block_lines");
-                all_block.Add("156_0", "blocks/quartz_block");
+                all_block.Add("156_x", "blocks/quartz_block");
                 all_block.Add("158_0", "blocks/furnace_side");
                 all_block.Add("159_0", "blocks/hardened_clay_stained_white");
                 all_block.Add("159_1", "blocks/hardened_clay_stained_orange");
@@ -249,10 +265,18 @@ namespace S2J
                 all_block.Add("160_13", "blocks/glass_green");
                 all_block.Add("160_14", "blocks/glass_red");
                 all_block.Add("160_15", "blocks/glass_black");
+                all_block.Add("161_0", "colormap/foliage");
+                all_block.Add("161_1", "colormap/foliage");
+                all_block.Add("161_4", "colormap/foliage");
+                all_block.Add("161_5", "colormap/foliage");
+                all_block.Add("161_8", "colormap/foliage");
+                all_block.Add("161_9", "colormap/foliage");
+                all_block.Add("161_12", "colormap/foliage");
+                all_block.Add("161_13", "colormap/foliage");
                 all_block.Add("162_0", "blocks/log_acacia");
                 all_block.Add("162_1", "blocks/log_big_oak");
-                all_block.Add("163_0", "blocks/planks_acacia");
-                all_block.Add("164_0", "blocks/planks_big_oak");
+                all_block.Add("163_x", "blocks/planks_acacia");
+                all_block.Add("164_x", "blocks/planks_big_oak");
                 all_block.Add("165_0", "blocks/slime");
                 all_block.Add("168_0", "blocks/prismarine_rough");
                 all_block.Add("168_1", "blocks/prismarine_bricks");
@@ -265,12 +289,12 @@ namespace S2J
                 all_block.Add("179_0", "blocks/red_sandstone_normal");
                 all_block.Add("179_1", "blocks/red_sandstone_carved");
                 all_block.Add("179_2", "blocks/red_sandstone_smooth");
-                all_block.Add("180_0", "blocks/red_sandstone_normal");
+                all_block.Add("180_x", "blocks/red_sandstone_normal");
                 all_block.Add("199_0", "blocks/chorus_plant");
                 all_block.Add("200_0", "blocks/chorus_flower");
                 all_block.Add("201_0", "blocks/purpur_block");
                 all_block.Add("202_0", "blocks/purpur_pillar");
-                all_block.Add("203_0", "blocks/purpur_block");
+                all_block.Add("203_x", "blocks/purpur_block");
                 all_block.Add("206_0", "blocks/end_bricks");
                 all_block.Add("213_0", "blocks/magma");
                 all_block.Add("214_0", "blocks/nether_wart_block");
@@ -468,7 +492,29 @@ namespace S2J
                                 top = true;
                             }//slab_upper
                             else
-                                continue;
+                            {
+                                m = block.ToString() + "_x";
+                                if (all_block.ContainsKey(m))
+                                {
+                                    texture = m;
+                                    islab = false;
+
+                                }//allblock
+                                else if (slab.ContainsKey(m))
+                                {
+                                    texture = m;
+                                    islab = true;
+                                    top = false;
+                                }//slab_bottom
+                                else if (slab_top.ContainsKey(m))
+                                {
+                                    texture = m;
+                                    islab = true;
+                                    top = true;
+                                }//slab_upper
+                                else
+                                    continue;
+                            }
 
                             if (!usedTextures.Contains(texture.ToString()))
                                 usedTextures.Add(texture.ToString());
