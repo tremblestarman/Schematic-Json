@@ -494,7 +494,7 @@ namespace S2J
                         //snow
                         h2.Add("78_1", "blocks/snow");
                         //bed
-                        if (version > 1.11)
+                        if (version >= 1.11)
                         {
                             h2.Add("26_0", "entity/bed/red");
                             h2.Add("26_1", "entity/bed/red");
