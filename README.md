@@ -8,5 +8,4 @@
 ![Demo-Spawn](https://public.lightpic.info/image/6CB8_5A3FAE090.jpg)
 ![Demo-Kasumigaoka Utaha](https://public.lightpic.info/image/B333_5A3F6D330.jpg)
 ***
-### Wiki
-##[Schematic2Json Wiki](https://github.com/tremblestarman/Schematic-Json/wiki)
+## 更多信息：[Schematic2Json Wiki](https://github.com/tremblestarman/Schematic-Json/wiki)
