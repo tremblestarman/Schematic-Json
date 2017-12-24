@@ -4,7 +4,7 @@
 * 目前版本：*1.0.5*
 ### 预览图片
 ![Demo-Deer](https://public.lightpic.info/image/FD91_59D1A1F40.jpg)
-![Demo-World Tree](https://public.lightpic.info/image/131E_5A3F6D330.jpg)
+![Demo-Dragon](https://public.lightpic.info/image/4561_5A3FD71B0.jpg)
 ![Demo-Spawn](https://public.lightpic.info/image/6CB8_5A3FAE090.jpg)
 ![Demo-Kasumigaoka Utaha](https://public.lightpic.info/image/B333_5A3F6D330.jpg)
 ***
