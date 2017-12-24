@@ -1,15 +1,12 @@
-# Schematic-Json
-Schematic转Json
-
-用法：
-[schematic] [模式] [模式] [模式]
-
-例如[schematic] smooth nopause            
-
-将你的建筑转化为材质平滑的Json模型，转化完成后直接关闭程序
-
-模式包括：smooth - 平滑材质，可以一定程度上降低输出文件的大小；unlimit - 模型无大小限制，慎重选择，太大可能游戏会崩溃；nopause - 运行完成不暂停。
-
-如果转化错误在源目录得到崩溃报告。
-
-目前支持的模型复杂度不高于半砖的方块，也不支持流体。
+# Schematic2Json
+本软件用于将Minecraft中生成的**Schematic文件**，转化为Minecraft材质中所用的**Json模型**。
+* 首次更新：*2017.2.07*
+* 目前版本：*1.0.5*
+### 预览图片
+![Demo-Deer](https://public.lightpic.info/image/FD91_59D1A1F40.jpg)
+![Demo-World Tree](https://public.lightpic.info/image/131E_5A3F6D330.jpg)
+![Demo-Spawn](https://public.lightpic.info/image/6CB8_5A3FAE090.jpg)
+![Demo-Kasumigaoka Utaha](https://public.lightpic.info/image/B333_5A3F6D330.jpg)
+***
+### Wiki
+##[Schematic2Json Wiki](https://github.com/tremblestarman/Schematic-Json/wiki)
