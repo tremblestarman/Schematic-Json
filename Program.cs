@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using fNbt;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 namespace S2J
 {
@@ -15,7 +16,7 @@ namespace S2J
         static void Main(string[] args)
         {
             string file;
-            //current version for 1.12.2
+            //current version is for 1.12.2
             double version = 1.122;
             #region GetFile
             if (args.Length > 0)
@@ -37,9 +38,13 @@ namespace S2J
                 Console.ReadKey(true);
                 Environment.Exit(1);
             }
-
-            //get version
-            foreach(string reg in args)
+            /*
+             * version: to make sure textures exist, avoiding display errors;
+             * filter: filter specific textures/models from its list;
+             * biome: for some textures using colormap;
+             */
+            #region version
+            foreach (string reg in args)
             {
                 if(Regex.Match(reg, @"version=.*$").Success)
                 {
@@ -58,6 +63,40 @@ namespace S2J
                     }
                 }
             }
+            #endregion
+            #region filter
+            //for blocks
+            var filter_blocks = new List<string>();
+            foreach (string reg in args)
+            {
+                if (Regex.Match(reg, @"filter_blocks=.*$").Success)
+                {
+                    filter_blocks = new List<string>(Regex.Matches(reg, @"filter_blocks=.*$")[0].Value.Split(','));
+                }
+            }
+            //for types
+            var filter_models = new List<string>();
+            foreach (string reg in args)
+            {
+                if (Regex.Match(reg, @"filter_models=.*$").Success)
+                {
+                    filter_models = new List<string>(Regex.Matches(reg, @"filter_models=.*$")[0].Value.Split(','));
+                }
+            }
+            #endregion
+            #region biome
+            var _temp = 0.8f; var _rain = 0.4f;
+            foreach (string reg in args)
+            {
+                if (Regex.Match(reg, @"biome=.*$").Success)
+                {
+                    foreach (Biome _biome in new Biome().gBiomes)
+                    {
+                        if (_biome.BiomeId == Regex.Matches(reg, @"filter_blocks=.*$")[0].Value) { _temp = _biome.Temperature; _rain = _biome.Rainfall; }
+                    }
+                }
+            }
+            #endregion
             #endregion
             try
             {
@@ -79,18 +118,18 @@ namespace S2J
                     textures = new Dictionary<string, string>()
                 };
                 #endregion
-                #region BlockLists
+                #region ModelLists
                     #region Layer
                         #region height=8
                         Dictionary<string, string> h8 = new Dictionary<string, string>();
-                        h8.Add("1_0", "blocks/stone_andesite");
+                        h8.Add("1_0", "blocks/stone");
                         h8.Add("1_1", "blocks/stone_granite");
                         h8.Add("1_2", "blocks/stone_granite_smooth");
                         h8.Add("1_3", "blocks/stone_diorite");
                         h8.Add("1_4", "blocks/stone_diorite_smooth");
                         h8.Add("1_5", "blocks/stone_andesite");
                         h8.Add("1_6", "blocks/stone_andesite_smooth");
-                        h8.Add("2_0", "blocks/grass_path_top");
+                        h8.Add("2_0", "$grass");
                         h8.Add("3_0", "blocks/dirt");
                         h8.Add("3_1", "blocks/coarse_dirt");
                         h8.Add("3_2", "blocks/dirt_podzol_top");
@@ -112,22 +151,22 @@ namespace S2J
                         h8.Add("17_1", "blocks/log_spruce");
                         h8.Add("17_2", "blocks/log_birch");
                         h8.Add("17_3", "blocks/log_jungle");
-                        h8.Add("18_0", "colormap/foliage");
-                        h8.Add("18_1", "colormap/foliage");
-                        h8.Add("18_2", "colormap/foliage");
-                        h8.Add("18_3", "colormap/foliage");
-                        h8.Add("18_4", "colormap/foliage");
-                        h8.Add("18_5", "colormap/foliage");
-                        h8.Add("18_6", "colormap/foliage");
-                        h8.Add("18_7", "colormap/foliage");
-                        h8.Add("18_8", "colormap/foliage");
-                        h8.Add("18_9", "colormap/foliage");
-                        h8.Add("18_10", "colormap/foliage");
-                        h8.Add("18_11", "colormap/foliage");
-                        h8.Add("18_12", "colormap/foliage");
-                        h8.Add("18_13", "colormap/foliage");
-                        h8.Add("18_14", "colormap/foliage");
-                        h8.Add("18_15", "colormap/foliage");
+                        h8.Add("18_0", "$oak_leaves");
+                        h8.Add("18_1", "$spruce_leaves");
+                        h8.Add("18_2", "$birch_leaves");
+                        h8.Add("18_3", "$jungle_leaves");
+                        h8.Add("18_4", "$oak_leaves");
+                        h8.Add("18_5", "$spruce_leaves");
+                        h8.Add("18_6", "$birch_leaves");
+                        h8.Add("18_7", "$jungle_leaves");
+                        h8.Add("18_8", "$oak_leaves");
+                        h8.Add("18_9", "$spruce_leaves");
+                        h8.Add("18_10", "$birch_leaves");
+                        h8.Add("18_11", "$jungle_leaves");
+                        h8.Add("18_12", "$oak_leaves");
+                        h8.Add("18_13", "$spruce_leaves");
+                        h8.Add("18_14", "$birch_leaves");
+                        h8.Add("18_15", "$jungle_leaves");
                         h8.Add("19_0", "blocks/sponge");
                         h8.Add("19_1", "blocks/sponge_wet");
                         h8.Add("20_0", "blocks/glass");
@@ -270,14 +309,14 @@ namespace S2J
                         h8.Add("159_13", "blocks/hardened_clay_stained_green");
                         h8.Add("159_14", "blocks/hardened_clay_stained_red");
                         h8.Add("159_15", "blocks/hardened_clay_stained_black");
-                        h8.Add("161_0", "colormap/foliage");
-                        h8.Add("161_1", "colormap/foliage");
-                        h8.Add("161_4", "colormap/foliage");
-                        h8.Add("161_5", "colormap/foliage");
-                        h8.Add("161_8", "colormap/foliage");
-                        h8.Add("161_9", "colormap/foliage");
-                        h8.Add("161_12", "colormap/foliage");
-                        h8.Add("161_13", "colormap/foliage");
+                        h8.Add("161_0", "$acacia_leaves");
+                        h8.Add("161_1", "$dark_oak_leaves");
+                        h8.Add("161_4", "$acacia_leaves");
+                        h8.Add("161_5", "$dark_oak_leaves");
+                        h8.Add("161_8", "$acacia_leaves");
+                        h8.Add("161_9", "$dark_oak_leaves");
+                        h8.Add("161_12", "$acacia_leaves");
+                        h8.Add("161_13", "$dark_oak_leaves");
                         h8.Add("162_0", "blocks/log_acacia");
                         h8.Add("162_1", "blocks/log_big_oak");
                         h8.Add("163_x", "blocks/planks_acacia");
@@ -578,11 +617,11 @@ namespace S2J
                         h1_gap.Add("96_x", "blocks/planks_oak");
                         h1_gap.Add("167_x", "blocks/iron_block");
                         //waterlily
-                        h1_gap.Add("111_x", "colormap/foliage");
+                        h1_gap.Add("111_x", "$waterlily");
                         #endregion
                     #endregion
                     #region Connector
-                    Dictionary<string, string> banConnect = new Dictionary<string, string>();
+                        Dictionary<string, string> banConnect = new Dictionary<string, string>();
                         banConnect.Add("0_0", "air");
                         #region glass_pane & iron_bar
                         Dictionary<string, string> c1 = new Dictionary<string, string>();
@@ -621,8 +660,42 @@ namespace S2J
                         c2.Add("185_x", "blocks/planks_jungle");
                         c2.Add("186_x", "blocks/planks_big_oak");
                         c2.Add("187_x", "blocks/planks_acacia");
+                #endregion
+                        #region rail & redstone_wire
+                        Dictionary<string, string> c3 = new Dictionary<string, string>();
+                        //rail
+                        c3.Add("27_x", "blocks/iron_block");
+                        c3.Add("28_x", "blocks/iron_block");
+                        c3.Add("66_x", "blocks/iron_block");
+                        c3.Add("157_x", "blocks/iron_block");
+                        //redstone_wire
+                        c3.Add("55_x", "blocks/redstone_block");
                         #endregion
                     #endregion
+                    #region Column
+                        #region height = 1
+                        Dictionary<string, string> s1 = new Dictionary<string, string>();
+                        s1.Add("59_0", "blocks/wheat_stage_0");
+                        s1.Add("104_0", "$pumpkin_stem");
+                        s1.Add("105_0", "$melon_stem");
+                        s1.Add("77_0", "blocks/stone");
+                        s1.Add("143_0", "blocks/planks_oak");
+                        #endregion
+                        #region height = 2
+                        Dictionary<string, string> s2 = new Dictionary<string, string>();
+                        s2.Add("59_1", "blocks/wheat_stage_1");
+                        s2.Add("115_1", "blocks/nether_wart_stage_0");
+                        s1.Add("104_1", "$pumpkin_stem");
+                        s1.Add("105_1", "$melon_stem");
+                #endregion
+                    #endregion
+                #region filter
+                foreach (string f_model in filter_models)
+                {
+                    if (f_model == "Layer") { h1.Clear(); h1_gap.Clear(); h2.Clear(); h3.Clear(); h4_bottom.Clear(); h4_top.Clear(); h5.Clear(); h6.Clear(); h7.Clear(); h8.Clear(); }
+                    if (f_model == "Connector") { c1.Clear(); c2.Clear(); c3.Clear(); }
+                }
+                #endregion
                 #endregion
                 #region attach blocks to textures
                 foreach (var item in h1) { model.textures.Add(item.Key, item.Value); banConnect.Add(item.Key, item.Value); }
@@ -637,6 +710,13 @@ namespace S2J
                 foreach (var item in h8) { model.textures.Add(item.Key, item.Value); }
                 foreach (var item in c1) { model.textures.Add(item.Key, item.Value); }
                 foreach (var item in c2) { model.textures.Add(item.Key, item.Value); }
+                foreach (var item in c3) { model.textures.Add(item.Key, item.Value); }
+                #region filter
+                foreach (string f_block in filter_blocks)
+                {
+                    model.textures.Remove(f_block);
+                }
+                #endregion
                 #endregion
                 var elements = new List<Model.Element>();
                 var random = new Random();
@@ -663,15 +743,14 @@ namespace S2J
                             var index = y * width * length + z * width + x;
                             var block = blocks[index];
                             var data = blockdata[index];
-                            //*base
+                            //*to describe a model
                             string texture = "", bmp = "";
-                            var modelType = 0;//0-2:Layer, 3-4:Connector
+                            var modelType = 0;//0-2:Layer, 3:Connector
                             var h = 0;
-
+                            #region set value for modeling and texturing
                             //match block for its texture
                             var exaDV = block.ToString() + "_" + data.ToString();
                             var dimDV = block.ToString() + "_x";
-
                             if (h1.ContainsKey(exaDV)) { bmp = h1[exaDV]; texture = exaDV; h = 1; }
                             else if (h1_gap.ContainsKey(exaDV)) { bmp = h1_gap[exaDV]; texture = exaDV; h = 1; modelType = 2; }
                             else if (h2.ContainsKey(exaDV)) { bmp = h2[exaDV]; texture = exaDV; h = 2; }
@@ -683,7 +762,8 @@ namespace S2J
                             else if (h7.ContainsKey(exaDV)) { bmp = h7[exaDV]; texture = exaDV; h = 7; }
                             else if (h8.ContainsKey(exaDV)) { bmp = h8[exaDV]; texture = exaDV; h = 8; }
                             else if (c1.ContainsKey(exaDV)) { bmp = c1[exaDV]; texture = exaDV; h = 8; modelType = 3; }
-                            else if (c2.ContainsKey(exaDV)) { bmp = c2[exaDV]; texture = exaDV; h = 4; modelType = 4; }
+                            else if (c2.ContainsKey(exaDV)) { bmp = c2[exaDV]; texture = exaDV; h = 4; modelType = 3; }
+                            else if (c3.ContainsKey(exaDV)) { bmp = c3[exaDV]; texture = exaDV; h = 1; modelType = 3; }
                             else
                             {
                                 if (h1.ContainsKey(dimDV)) { bmp = h1[dimDV]; texture = dimDV; h = 1; }
@@ -697,30 +777,55 @@ namespace S2J
                                 else if (h7.ContainsKey(dimDV)) { bmp = h7[dimDV]; texture = dimDV; h = 7; }
                                 else if (h8.ContainsKey(dimDV)) { bmp = h8[dimDV]; texture = dimDV; h = 8; }
                                 else if (c1.ContainsKey(dimDV)) { bmp = c1[dimDV]; texture = dimDV; h = 8; modelType = 3; }
-                                else if (c2.ContainsKey(dimDV)) { bmp = c2[dimDV]; texture = dimDV; h = 4; modelType = 4; }
+                                else if (c2.ContainsKey(dimDV)) { bmp = c2[dimDV]; texture = dimDV; h = 4; modelType = 3; }
+                                else if (c3.ContainsKey(dimDV)) { bmp = c3[dimDV]; texture = dimDV; h = 1; modelType = 3; }
                                 else continue;
                             }
-                            
+                            #endregion
 
                             if (!usedTextures.Contains(texture.ToString()))
                                 usedTextures.Add(texture.ToString());
 
                             #region random texture
-                            var rnd = 0.0f;
+                            var x1 = 0.0f;//x of a pixel
+                            var y1 = 0.0f;//y of a pixel
                             bool textureError = true;
-                            //if alpha = 0
-                            while (textureError)
+
+                            //for colormap texture
+                            if (bmp.Contains('$'))
                             {
-                                rnd = (float)random.NextDouble() * 16;
+                                float[] uvs = new[] { 0.8f, 0.4f * 0.8f };
+                                //define tremor
+                                if (bmp == "$grass") { uvs = UV.getColorMapUV(_temp, _rain, 5, false, 0); }
+                                else if (bmp == "$oak_leaves") { uvs = UV.getColorMapUV(_temp, _rain, 5, true, 5f); }
+                                else if (bmp == "$spruce_leaves") { uvs = UV.getColorMapUV(_temp, _rain, 5, false, 0f); }
+                                else if (bmp == "$birch_leaves") { uvs = UV.getColorMapUV(_temp, _rain, 5, true, 2.5f); }
+                                else if (bmp == "$jungle_leaves") { uvs = UV.getColorMapUV(_temp, _rain, 5, true, 10f); }
+                                else if (bmp == "$acacia_leaves") { uvs = UV.getColorMapUV(_temp, _rain, 5, true, 0f); }
+                                else if (bmp == "$dark_oak_leaves") { uvs = UV.getColorMapUV(_temp, _rain, 5, false, 5f); }
+                                else if (bmp == "$waterlily") { uvs = UV.getColorMapUV(_temp, _rain, 5, false, 5f); }
+                                x1 = uvs[0];
+                                y1 = uvs[1];
+                            }
+                            //detect alpha for normal texture
+                            else if (args.Contains("smooth"))
+                            {
                                 try
                                 {
-                                    Bitmap compare = new Bitmap(Environment.CurrentDirectory + "\\textures\\" + bmp.Replace("/", "\\") + ".png");
-                                    textureError = (compare.GetPixel((int)rnd, (int)rnd).A <= 8);
+                                    Bitmap compare = new Bitmap(System.Windows.Forms.Application.StartupPath + "\\textures\\" + bmp.Replace("/", "\\") + ".png");
+                                    for (int mh = 0; mh < compare.Size.Height; mh++)
+                                    {
+                                        for (int mw = 0; mw < compare.Size.Width; mw++)
+                                        {
+                                            if (compare.GetPixel(mh, mw).A > 8) { x1 = mh; y1 = mw; break; }
+                                        }
+                                        if (x1 > 0 && y1 > 0) break;
+                                    }
                                 }
                                 catch (Exception exception)
                                 {
                                     Console.WriteLine("遇到了一个问题..请看崩溃报告");
-                                    Console.WriteLine(bmp);
+                                    Console.WriteLine("生成" + bmp + "时的材质错误");
                                     File.WriteAllText(DateTime.Now.ToFileTime() + "-crash.txt", exception.ToString());
                                     Console.WriteLine(exception);
                                     if (args.Contains("nopause")) return;
@@ -729,8 +834,31 @@ namespace S2J
                                     Environment.Exit(2);
                                 }
                             }
-                            if (args.Contains("smooth")) rnd = 0;
-                            var face = new Model.Element.Face { texture = "#" + texture, uv = new[] { rnd, rnd, rnd, rnd } };
+                            else
+                            {
+                                while (textureError)
+                                {
+                                    x1 = (float)random.NextDouble() * 16;
+                                    y1 = (float)random.NextDouble() * 16;
+                                    try
+                                    {
+                                        Bitmap compare = new Bitmap(System.Windows.Forms.Application.StartupPath + "\\textures\\" + bmp.Replace("/", "\\") + ".png");
+                                        textureError = (compare.GetPixel((int)x1, (int)y1).A <= 8);
+                                    }
+                                    catch (Exception exception)
+                                    {
+                                        Console.WriteLine("遇到了一个问题..请看崩溃报告");
+                                        Console.WriteLine("生成" + bmp + "时的材质错误");
+                                        File.WriteAllText(DateTime.Now.ToFileTime() + "-crash.txt", exception.ToString());
+                                        Console.WriteLine(exception);
+                                        if (args.Contains("nopause")) return;
+                                        Console.WriteLine("按任意键继续...");
+                                        Console.ReadKey(true);
+                                        Environment.Exit(2);
+                                    }
+                                }
+                            }
+                            var face = new Model.Element.Face { texture = "#" + texture, uv = new[]{ x1, y1, x1, y1 } };
                             #endregion
 
                             //from to
@@ -765,15 +893,20 @@ namespace S2J
                                 if (z + 1 < length) { banDV[3] = blocks[y * width * length + (z + 1) * width + x].ToString() + "_" + blockdata[y * width * length + (z + 1) * width + x].ToString(); bandimDV[3] = blocks[y * width * length + (z + 1) * width + x].ToString() + "_x"; }
                                 if (y + 1 < height) { banDV[4] = blocks[(y + 1) * width * length + z * width + x].ToString() + "_" + blockdata[(y + 1) * width * length + z * width + x].ToString(); bandimDV[4] = blocks[(y + 1) * width * length + z * width + x].ToString() + "_x"; }
 
-                                if (modelType == 3)//glass_pane
+                                if (h == 8)//glass_pane
                                 {
                                     from[0] = x + 0.3f - ((!banConnect.ContainsKey(banDV[0]) && !banConnect.ContainsKey(bandimDV[0])) ? 0.3f : 0); from[1] = y; from[2] = z + 0.3f - ((!banConnect.ContainsKey(banDV[2]) && !banConnect.ContainsKey(bandimDV[2])) ? 0.3f : 0);
                                     to[0] = x + 0.7f + ((!banConnect.ContainsKey(banDV[1]) && !banConnect.ContainsKey(bandimDV[1])) ? 0.3f : 0); to[1] = y + 1; to[2] = z + 0.7f + ((!banConnect.ContainsKey(banDV[3]) && !banConnect.ContainsKey(bandimDV[3])) ? 0.3f : 0);
                                 }
-                                else if (modelType == 4)//fence & fence_gate
+                                else if (h == 4)//fence & fence_gate
                                 {
                                     from[0] = x + 0.3f - ((!banConnect.ContainsKey(banDV[0]) && !banConnect.ContainsKey(bandimDV[0])) ? 0.3f : 0); from[1] = y; from[2] = z + 0.3f - ((!banConnect.ContainsKey(banDV[2]) && !banConnect.ContainsKey(bandimDV[2])) ? 0.3f : 0);
                                     to[0] = x + 0.7f + ((!banConnect.ContainsKey(banDV[1]) && !banConnect.ContainsKey(bandimDV[1])) ? 0.3f : 0); to[1] = y + ((!banConnect.ContainsKey(banDV[4]) && !banConnect.ContainsKey(bandimDV[4])) ? 1 : 0.5f); to[2] = z + 0.7f + ((!banConnect.ContainsKey(banDV[3]) && !banConnect.ContainsKey(bandimDV[3])) ? 0.3f : 0);
+                                }
+                                else if (h == 1)//rail & redstone_wire
+                                {
+                                    from[0] = x + 0.3f - ((!banConnect.ContainsKey(banDV[0]) && !banConnect.ContainsKey(bandimDV[0])) ? 0.3f : 0); from[1] = y; from[2] = z + 0.3f - ((!banConnect.ContainsKey(banDV[2]) && !banConnect.ContainsKey(bandimDV[2])) ? 0.3f : 0);
+                                    to[0] = x + 0.7f + ((!banConnect.ContainsKey(banDV[1]) && !banConnect.ContainsKey(bandimDV[1])) ? 0.3f : 0); to[1] = y + 0.1f; to[2] = z + 0.7f + ((!banConnect.ContainsKey(banDV[3]) && !banConnect.ContainsKey(bandimDV[3])) ? 0.3f : 0);
                                 }
                             }
 
@@ -800,6 +933,15 @@ namespace S2J
                 //remove unused
                 foreach (var key in model.textures.Keys.ToList())
                 {
+                    //colormap
+                    if (model.textures[key] == "$grass") { model.textures[key] = "colormap/grass";  }
+                    if (model.textures[key] == "$oak_leaves") model.textures[key] = "colormap/foliage";
+                    if (model.textures[key] == "$spruce_leaves") model.textures[key] = "colormap/foliage";
+                    if (model.textures[key] == "$birch_leaves") model.textures[key] = "colormap/foliage";
+                    if (model.textures[key] == "$jungle_leaves") model.textures[key] = "colormap/foliage";
+                    if (model.textures[key] == "$acacia_leaves") model.textures[key] = "colormap/foliage";
+                    if (model.textures[key] == "$dark_oak_leaves") model.textures[key] = "colormap/foliage";
+                    if (model.textures[key] == "$waterlily") model.textures[key] = "colormap/foliage";
                     if (!usedTextures.Contains(key)) model.textures.Remove(key);
                 }
 
@@ -846,6 +988,41 @@ namespace S2J
                 Console.ReadKey(true);
                 Environment.Exit(2);
             }
+        }
+    }
+    class UV
+    {
+        /// <summary>
+        /// get UV of the color map via its biome
+        /// </summary>
+        /// <param name="temp">temperature</param>
+        /// <param name="rain">rain fall</param>
+        /// <param name="pixel_range">a random range(pixels)</param>
+        /// <param name="rich">vibrant colormap</param>
+        /// <param name="warm">the color depth based on its current color</param>
+        /// <returns>uv compound</returns>
+        static public float[] getColorMapUV(float temp, float rain, int pixel_range = 0, bool rich = false, float warm = 0.0f)
+        {
+            float[] uv = new[] { /*uv-x*/0.0f, /*uv-y*/0.0f };
+            float uv_x = 0.0f, uv_y = 0.0f;
+            var theta = (double)new Random().NextDouble() * 360;
+            var d = (float)new Random().NextDouble() * pixel_range - pixel_range / 2;
+            uv_x = temp + (warm / 256f) + (d / 256f) * (float)Math.Cos(theta * Math.PI / 360); uv_y = temp * rain + (warm / 256f) + (d / 256f) * (float)Math.Sin(theta * Math.PI / 360);
+            if (uv_x < uv_y) { uv_x = temp + warm - (d / 256f) * (float)Math.Cosh(theta); uv_y = temp * rain + warm - (d / 256f) * (float)Math.Sinh(theta); }
+            if (rich)
+            {
+                uv_x = 1 - uv_x;
+                uv_y = 1 - uv_y;
+            }
+            else
+            {
+                var uv_t = uv_x;
+                uv_x = 1 - uv_y;
+                uv_y = 1 - uv_t;
+            }
+            uv[0] = (1 - uv_x)*16;
+            uv[1] = (1 - uv_y)*16;
+            return uv;
         }
     }
 }
