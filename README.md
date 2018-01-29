@@ -2,7 +2,7 @@
 本软件用于将Minecraft中生成的**Schematic文件**，转化为Minecraft材质中所用的**Json模型**。
 * 首次更新：*2017.2.07*
 * 目前版本：*1.0.5*
-* 重制项目： **[Block2Json](https://github.com/tremblestarman/Block2Json)**
+* 重制项目： **[Block2Json](https://github.com/tremblestarman/Block2Json)**  
 注：本项目已取消更新，已转战重制项目
 
 ### 预览图片
